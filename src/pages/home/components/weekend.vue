@@ -5,11 +5,11 @@
             <ul>
                 <li
                     class="item border-bottom"
-                    v-for="item in recomment"
+                    v-for="item in list"
                     :key="item.id"
                 >
                     <div class="item-img-wrapper">
-                    <img class="item-img" :src="item.urlimg" />
+                    <img class="item-img" :src="item.imgUrl" />
                     </div>
                     <div class="item-info">
                     <p class="item-title">{{item.title}}</p>
@@ -23,35 +23,8 @@
 <script>
 export default {
   name: "IndexWeekend",
-  data() {
-    return {
-      recomment: [
-        {
-          id: "0001",
-          urlimg:
-            "https://img1.qunarzz.com/p/tts2/1803/2f/80131e5732519e02.jpg_r_480x320x90_d645f7b3.jpg",
-          title: "大连圣亚海洋世界",
-          desc:
-            "浪漫大连首站,浪漫的海洋主题公园浪漫大连首站,浪漫的海洋主题浪漫大连首站,浪漫的海洋主题"
-        },
-        {
-          id: "0002",
-          urlimg:
-            "https://img1.qunarzz.com/p/tts2/1803/2f/80131e5732519e02.jpg_r_480x320x90_d645f7b3.jpg",
-          title: "大连圣亚海洋世界",
-          desc:
-            "浪漫大连首站,浪漫的海洋主题公园浪漫大连首站,浪漫的海洋主题浪漫大连首站,浪漫的海洋主题"
-        },
-        {
-          id: "0003",
-          urlimg:
-            "https://img1.qunarzz.com/p/tts2/1803/2f/80131e5732519e02.jpg_r_480x320x90_d645f7b3.jpg",
-          title: "大连圣亚海洋世界",
-          desc:
-            "浪漫大连首站,浪漫的海洋主题公园浪漫大连首站,浪漫的海洋主题浪漫大连首站,浪漫的海洋主题"
-        }
-      ]
-    };
+  props: {
+    list: Array
   }
 };
 </script>

@@ -2,9 +2,9 @@
     <div>
         <div class="title">浪漫之旅</div>
         <ul>
-            <li class="item" v-for="item in recomment" :key="item.id">
+            <li class="item" v-for="item in list" :key="item.id">
                 <div class="item-img-wrap">
-                    <img class="item-img" :src="item.urlimg" alt="">
+                    <img class="item-img" :src="item.imgUrl" alt="">
                 </div>
                 <div class="item-info">
                     <p class="item-title">{{item.title}}</p>
@@ -18,32 +18,8 @@
 <script>
 export default {
   name: "IndexRecomment",
-  data() {
-    return {
-      recomment: [
-        {
-          id: "0001",
-          urlimg: "//s.qunarzz.com/imall/v2/product/small/pengcixiansmall.jpg",
-          title: "大连圣亚海洋世界",
-          desc:
-            "浪漫大连首站,浪漫的海洋主题公园浪漫大连首站,浪漫的海洋主题浪漫大连首站,浪漫的海洋主题"
-        },
-        {
-          id: "0002",
-          urlimg: "//s.qunarzz.com/imall/v2/product/small/pengcixiansmall.jpg",
-          title: "大连圣亚海洋世界",
-          desc:
-            "浪漫大连首站,浪漫的海洋主题公园浪漫大连首站,浪漫的海洋主题浪漫大连首站,浪漫的海洋主题"
-        },
-        {
-          id: "0003",
-          urlimg: "//s.qunarzz.com/imall/v2/product/small/pengcixiansmall.jpg",
-          title: "大连圣亚海洋世界",
-          desc:
-            "浪漫大连首站,浪漫的海洋主题公园浪漫大连首站,浪漫的海洋主题浪漫大连首站,浪漫的海洋主题"
-        }
-      ]
-    };
+  props: {
+    list: Array
   }
 };
 </script>

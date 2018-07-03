@@ -4,7 +4,12 @@ function resolve(dir) {
     return path.join(__dirname, dir)
 }
 module.exports = {
-    lintOnSave: true,
+    baseUrl: process.env.VUE_APP_MOCK_URL,
+    lintOnSave: false,
+    devServer: {
+        port: 5999
+    },
+    assetsDir: 'assets',
     chainWebpack: (config) => {
         config.resolve.alias
             .set('@$', resolve('src'))
