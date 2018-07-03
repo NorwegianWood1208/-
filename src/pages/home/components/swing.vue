@@ -1,6 +1,6 @@
 <template>
   <div class="swing-loading">
-    <swiper :options="swiperOption">
+    <swiper :options="swiperOption" v-if="list.length">
     <swiper-slide v-for="item in list" :key="item.id">
       <img class="img-swing" :src="item.imgUrl">
     </swiper-slide>

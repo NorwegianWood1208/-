@@ -5,10 +5,6 @@ function resolve(dir) {
 }
 module.exports = {
     baseUrl: process.env.VUE_APP_MOCK_URL,
-    lintOnSave: false,
-    devServer: {
-        port: 5999
-    },
     assetsDir: 'assets',
     chainWebpack: (config) => {
         config.resolve.alias
