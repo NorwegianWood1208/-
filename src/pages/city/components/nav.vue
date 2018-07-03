@@ -1,14 +1,69 @@
 <template>
     <div>
         <ul class="list">
-            <li class="item"  v-for="value,index in datas" :key="index.id">{{index}}</li>
+            <li 
+                class="item"  
+                v-for="value in statusdata" 
+                :key="value"
+                :ref="value"
+                @click="handclick"
+                @touchstart="handstart"
+                @touchmove="handmove"
+                @touchend="handend"
+            >
+                {{value}}
+            </li>
         </ul>
     </div>
 </template>
 <script>
 export default {
   name: "CityNav",
-  props: ["datas"]
+  props: ["datas"],
+  data() {
+    return {
+      onoff: false,
+      startY: 0,
+      timer: null
+    };
+  },
+  computed: {
+    statusdata() {
+      let status = [];
+      for (const i in this.datas) {
+        status.push(i);
+      }
+      return status;
+    }
+  },
+  updated() {
+    this.startY = this.$refs["A"][0].offsetTop;
+  },
+  methods: {
+    handclick(ev) {
+      this.$emit("change", ev.target.innerText);
+    },
+    handstart() {
+      this.onoff = true;
+    },
+    handmove(ev) {
+      if (this.onoff) {
+        if (this.timer) {
+          clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(() => {
+          const moveY = ev.touches[0].clientY - 74;
+          const index = Math.floor((moveY - this.startY) / 20);
+          if (index >= 0 && index <= this.statusdata.length) {
+            this.$emit("change", this.statusdata[index]);
+          }
+        }, 16);
+      }
+    },
+    handend() {
+      this.onoff = false;
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>

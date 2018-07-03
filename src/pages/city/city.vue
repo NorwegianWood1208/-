@@ -2,8 +2,8 @@
     <div>
         <city-head></city-head>
         <city-seach></city-seach>
-        <city-list :city="this.city" :hotcity="this.hotcity"></city-list>
-        <city-nav :datas="this.city"></city-nav>
+        <city-list :city="this.city" :hotcity="this.hotcity" :resnav="resnav"></city-list>
+        <city-nav :datas="this.city" @change="handchange"></city-nav>
   </div>
 </template>
 <script>
@@ -23,7 +23,8 @@ export default {
   data() {
     return {
       city: {},
-      hotcity: []
+      hotcity: [],
+      resnav: ""
     };
   },
   methods: {
@@ -35,6 +36,9 @@ export default {
       this.city = data.cities;
       this.hotcity = data.hotCities;
       console.log(this.city);
+    },
+    handchange(res) {
+      this.resnav = res;
     }
   },
   mounted() {
