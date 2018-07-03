@@ -1,17 +1,14 @@
 <template>
-    <ul class="list">
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-        <li class="item">A</li>
-  </ul>
+    <div>
+        <ul class="list">
+            <li class="item"  v-for="value,index in datas" :key="index.id">{{index}}</li>
+        </ul>
+    </div>
 </template>
 <script>
 export default {
-  name: "CityNav"
+  name: "CityNav",
+  props: ["datas"]
 };
 </script>
 <style lang="stylus" scoped>
