@@ -35,7 +35,6 @@ export default {
       const data = res.data.data;
       this.city = data.cities;
       this.hotcity = data.hotCities;
-      console.log(this.city);
     },
     handchange(res) {
       this.resnav = res;

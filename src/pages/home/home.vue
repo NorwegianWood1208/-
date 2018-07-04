@@ -33,7 +33,6 @@ export default {
         this.recommendList = e.data.recommendList;
         this.swiperList = e.data.swiperList;
         this.weekendList = e.data.weekendList;
-        console.log(e.data.recommendList);
       });
     // axios
     //   .get("/index.json")

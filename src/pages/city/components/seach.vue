@@ -3,9 +3,13 @@
     <div class="search">
       <input v-model="keyword" class="search-input" type="text" placeholder="输入城市名或拼音" />
     </div>
-    <div class="search-content" ref="seach" v-show="keyword">
+    <div class="search-content" ref="seach" v-show="keyword" >
       <ul>
-        <li class="search-item border-bottom" v-for="item in arr">
+        <li 
+          class="search-item border-bottom" 
+          v-for="item in arr" 
+          :key="item.id" 
+          handleclick(item.name)>
           {{item.name}}
         </li>
         <li class="search-item border-bottom" v-show="nolength">
@@ -57,6 +61,12 @@ export default {
         }
         this.arr = resolt;
       }, 100);
+    }
+  },
+  methods: {
+    handleclick(res) {
+      this.$store.dispatch("changedata", res);
+      this.$router.push("/");
     }
   },
   mounted() {

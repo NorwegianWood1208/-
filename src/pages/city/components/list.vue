@@ -5,26 +5,36 @@
                 <div class="title border-topbottom">当前城市</div>
                 <div class="button-list">
                     <div class="button-wrapper">
-                        <div class="button">北京</div>
+                        <div class="button">{{this.citys}}</div>
                     </div>
                 </div>
             </div>
             <div class="area">
                 <div class="title border-topbottom">热门城市</div>
                 <div class="button-list">
-                    <div class="button-wrapper"  v-for="item in hotcity" :key="item.id">
+                    <div 
+                        class="button-wrapper"  
+                        v-for="item in hotcity" 
+                        :key="item.id"
+                        @click="handleclick(item.name)"
+                    >
                         <div class="button">{{item.name}}</div>
                     </div>
                 </div>
             </div>
             <div 
                 class="area" 
-                v-for="value,index in city" 
-                :key="index" 
+                v-for="(value,index) in city" 
+                :key="value" 
                 :ref="index"
             >
                 <div class="title border-topbottom">{{index}}</div>
-                <div class="item-list border-bottom" v-for="data in value" :key="data.id">
+                <div 
+                    class="item-list border-bottom" 
+                    v-for="data in value" 
+                    :key="data.id"
+                    @click="handleclick(data.name)"
+                >
                     <div class="item">{{data.name}}</div>
                 </div>
             </div>
@@ -33,12 +43,25 @@
 </template>
 <script>
 import BScroll from "better-scroll";
+import { mapState, mapMutations } from "vuex";
 export default {
   name: "CityList",
   props: {
     city: Object,
     hotcity: Array,
     resnav: String
+  },
+  computed: {
+    ...mapState({
+      citys: "city"
+    })
+  },
+  methods: {
+    handleclick(res) {
+      this.changedata(res);
+      this.$router.push("/");
+    },
+    ...mapMutations(["changedata"])
   },
   mounted() {
     this.scroll = new BScroll(this.$refs.wrapper);

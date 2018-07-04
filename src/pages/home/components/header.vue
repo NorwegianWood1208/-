@@ -9,14 +9,18 @@
     </div>
     <router-link to='/city'>
       <div class="header-right">
-        <span class="iconfont arrow-icon">城市&#xe62d;</span>
+        <span class="iconfont arrow-icon">{{this.city}}&#xe62d;</span>
       </div>
     </router-link>
   </div>
 </template>
 <script>
+import { mapstate, mapState } from "vuex";
 export default {
-  name: "HomeHeader"
+  name: "HomeHeader",
+  computed: {
+    ...mapState(["city"])
+  }
 };
 </script>
 <style lang="stylus" scoped>
