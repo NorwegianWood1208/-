@@ -25,7 +25,7 @@
             <div 
                 class="area" 
                 v-for="(value,index) in city" 
-                :key="value" 
+                :key="index" 
                 :ref="index"
             >
                 <div class="title border-topbottom">{{index}}</div>

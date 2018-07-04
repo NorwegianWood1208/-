@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-import { mapstate, mapState } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "HomeHeader",
   computed: {

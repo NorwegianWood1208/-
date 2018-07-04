@@ -13,7 +13,7 @@ import HomeSwing from "./components/swing";
 import HomeIcons from "./components/icons";
 import IndexRecomment from "./components/recommend";
 import IndexWeekend from "./components/weekend";
-import axios from "axios";
+import { mapState } from "vuex";
 export default {
   name: "Home",
   data() {
@@ -21,19 +21,28 @@ export default {
       icondata: [],
       recommendList: [],
       swiperList: [],
-      weekendList: []
+      weekendList: [],
+      lastcity: ""
     };
   },
-  methods: {},
+  computed: {
+    ...mapState(["city"])
+  },
+  methods: {
+    getdata() {
+      fetch("/index.json?city" + this.city)
+        .then(e => e.json())
+        .then(e => {
+          this.icondata = e.data.iconList;
+          this.recommendList = e.data.recommendList;
+          this.swiperList = e.data.swiperList;
+          this.weekendList = e.data.weekendList;
+        });
+    }
+  },
   mounted() {
-    fetch("/index.json")
-      .then(e => e.json())
-      .then(e => {
-        this.icondata = e.data.iconList;
-        this.recommendList = e.data.recommendList;
-        this.swiperList = e.data.swiperList;
-        this.weekendList = e.data.weekendList;
-      });
+    this.getdata();
+    this.lastcity = this.city;
     // axios
     //   .get("/index.json")
     //   .then(res => {
@@ -42,6 +51,13 @@ export default {
     //   .catch(err => {
     //     console.log(err);
     //   });
+  },
+  activated() {
+    console.log(this.lastcity, this.city);
+    if (this.lastcity !== this.city) {
+      this.getdata();
+      this.lastcity = this.city;
+    }
   },
   components: {
     HomeHeader,
