@@ -1,22 +1,67 @@
 <template>
-    <div>
+  <div>
     <div class="search">
-      <input  class="search-input" type="text" placeholder="输入城市名或拼音" />
+      <input v-model="keyword" class="search-input" type="text" placeholder="输入城市名或拼音" />
     </div>
-    <!-- <divclass="search-content">
+    <div class="search-content" ref="seach" v-show="keyword">
       <ul>
-        <li class="search-item border-bottom">
+        <li class="search-item border-bottom" v-for="item in arr">
+          {{item.name}}
         </li>
-        <li class="search-item border-bottom" >
+        <li class="search-item border-bottom" v-show="nolength">
           没有找到匹配数据
         </li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </template>
 <script>
+import Bscroll from "better-scroll";
 export default {
-  name: "CitySeach"
+  name: "CitySeach",
+  props: {
+    list: Object
+  },
+  data() {
+    return {
+      keyword: "",
+      arr: [],
+      timer: null
+    };
+  },
+  computed: {
+    nolength() {
+      return !this.arr.length;
+    }
+  },
+  watch: {
+    keyword() {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+      if (!this.keyword) {
+        this.arr = [];
+        return;
+      }
+      this.timer = setTimeout(() => {
+        const resolt = [];
+        for (var i in this.list) {
+          this.list[i].forEach(e => {
+            if (
+              e.spell.indexOf(this.keyword) > -1 ||
+              e.name.indexOf(this.keyword) > -1
+            ) {
+              resolt.push(e);
+            }
+          });
+        }
+        this.arr = resolt;
+      }, 100);
+    }
+  },
+  mounted() {
+    this.scroll = new Bscroll(this.$refs.seach);
+  }
 };
 </script>
 <style lang="stylus" scoped>

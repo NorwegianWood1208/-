@@ -1,7 +1,7 @@
 <template>
     <div>
         <city-head></city-head>
-        <city-seach></city-seach>
+        <city-seach :list="this.city"></city-seach>
         <city-list :city="this.city" :hotcity="this.hotcity" :resnav="resnav"></city-list>
         <city-nav :datas="this.city" @change="handchange"></city-nav>
   </div>
