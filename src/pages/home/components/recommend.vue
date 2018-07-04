@@ -2,7 +2,13 @@
     <div>
         <div class="title">浪漫之旅</div>
         <ul>
-            <li class="item" v-for="item in list" :key="item.id">
+            <router-link
+                tag="li"
+                class="item" 
+                v-for="item in list" 
+                :key="item.id"
+                :to="/detail/+item.id"
+            >
                 <div class="item-img-wrap">
                     <img class="item-img" :src="item.imgUrl" alt="">
                 </div>
@@ -11,7 +17,7 @@
                     <p class="item-desc">{{item.desc}}</p>
                     <button class="item-button">查看详情</button>
                 </div>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>
