@@ -7,7 +7,7 @@
                 :key="value"
                 :ref="value"
                 @click="handclick"
-                @touchstart="handstart"
+                @touchstart.prevent="handstart"
                 @touchmove="handmove"
                 @touchend="handend"
             >
@@ -70,19 +70,19 @@ export default {
 @import '~assets/public.styl';
 
 .list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: absolute;
-    top: 1.58rem;
-    right: 0;
-    bottom: 0;
-    width: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 1.58rem;
+  right: 0;
+  bottom: 0;
+  width: 0.4rem;
 
-    .item {
-        line-height: 0.4rem;
-        text-align: center;
-        color: $bgColor;
-    }
+  .item {
+    line-height: 0.4rem;
+    text-align: center;
+    color: $bgColor;
+  }
 }
 </style>

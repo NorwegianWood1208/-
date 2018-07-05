@@ -9,6 +9,7 @@ import './registerServiceWorker'
 import 'assets/reset.css'
 import 'assets/border.css'
 import 'assets/iconfont.css'
+import "babel-polyfill"
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 fastClick.attach(document.body)
