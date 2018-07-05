@@ -9,7 +9,7 @@
           class="search-item border-bottom" 
           v-for="item in arr" 
           :key="item.id" 
-          handleclick(item.name)>
+          @click ="handleclick(item.name)">
           {{item.name}}
         </li>
         <li class="search-item border-bottom" v-show="nolength">

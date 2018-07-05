@@ -4,11 +4,14 @@
       tag="div"
       to="/"
       class="header-abs"
+      v-show="showabs"
     >
       <div class="iconfont header-abs-back">&#xe624;</div>
     </router-link>
     <div
       class="header-fixed"
+      v-show="!showabs"
+      :style="opacityStyle"
     >
       <router-link to="/">
         <div class="iconfont header-fixed-back">&#xe624;</div>
@@ -20,12 +23,41 @@
 
 <script>
 export default {
-  name: "DetailHeader"
+  name: "DetailHeader",
+  data() {
+    return {
+      showabs: true,
+      opacityStyle: {
+        opacity: 0
+      }
+    };
+  },
+  methods: {
+    handscroll() {
+      const top = document.documentElement.scrollTop;
+      if (top > 60) {
+        let opacity = top / 140;
+        opacity = opacity > 1 ? 1 : opacity;
+        this.opacityStyle = {
+          opacity
+        };
+        this.showabs = false;
+      } else {
+        this.showabs = true;
+      }
+    }
+  },
+  activated() {
+    window.addEventListener("scroll", this.handscroll);
+  },
+  deactivated() {
+    window.removeEventListener("scroll", this.handscroll);
+  }
 };
 </script>
 
 <style lang="stylus" scoped>
-@import '~styles/varibles.styl';
+@import '~assets/public.styl';
 
 .header-abs {
   position: absolute;

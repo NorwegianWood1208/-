@@ -3,10 +3,9 @@
         <div class="wrapper">
              <swiper 
                 :options="swiperOptions"  
-                
             >
                 <swiper-slide 
-                    v-for="item,index in img" 
+                    v-for="(item,index) in img" 
                     :key="index">
                     <img class="gallary-img" :src="item" />
                 </swiper-slide>
